@@ -130,12 +130,12 @@ func (h *ProductHandler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// ListAccounts godoc
+// GetProducts  godoc
 // @Summary     List products
 // @Description get all products
 // @Tags        products
-// @Accept      json
-// @Produce     json
+// @Accept      JSON
+// @Produce     JSON
 // @Param       page query string false "page number"
 // @Param       limit query string false "limit"
 // @Success     200 {array} entity.Product

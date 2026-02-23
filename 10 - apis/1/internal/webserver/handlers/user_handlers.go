@@ -73,12 +73,12 @@ func (h *UserHandler) GetJWT(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(accessToken)
 }
 
-// Create user godoc
+// CreateUser Create user godoc
 // @Summary      Create user
 // @Description  Create user
 // @Tags         users
-// @Accept       json
-// @Produce      json
+// @Accept       JSON
+// @Produce      JSON
 // @Param        request   body      dto.CreateUserInput true  "user request"
 // @Success      201
 // @Failure      500  {object}  Error
