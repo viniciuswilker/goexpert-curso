@@ -11,7 +11,6 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/go-chi/jwtauth"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -29,7 +28,7 @@ import (
 // @license.name  Apache 2.0
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host      localhost:8000
+// @host      127.0.0.1:8000
 // @BasePath
 
 // @securityDefinitions.basic  BasicAuth
@@ -64,10 +63,8 @@ func main() {
 	r.Use(middleware.WithValue("JwtExperesIn", configs.JWTExperesIn))
 
 	r.Route("/products", func(r chi.Router) {
-
-		r.Use(jwtauth.Verifier(configs.TokenAuth))
-		r.Use(jwtauth.Authenticator)
-
+		// r.Use(jwtauth.Verifier(configs.TokenAuth))
+		// r.Use(jwtauth.Authenticator)
 		r.Get("/", productHandler.GetProducts)
 		r.Get("/{id}", productHandler.GetProduct)
 		r.Post("/", productHandler.CreateProduct)
@@ -78,7 +75,7 @@ func main() {
 	r.Post("/users", userHandler.CreateUser)
 	r.Post("/users/generate_token", userHandler.GetJWT)
 
-	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://127.0.0.1:8000/docs/doc.json")))
 	err = http.ListenAndServe(":8000", r)
 
 }
